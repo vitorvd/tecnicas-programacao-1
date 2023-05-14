@@ -27,68 +27,45 @@
 
 using namespace std;
 
-void invocarTeste(TUDominio *testeDominio, string nome) {
-    TUEstado estado = testeDominio->run();
-    if(estado.getEstadoCenarioSucesso())
+template <typename T>
+void executarTestesDominio(string nome) {
+    T dominio;
+    TUEstado estadoEntidade = dominio.run();
+    if(estadoEntidade.getEstadoCenarioSucesso())
         cout << "[Dominio: " << nome << "] SUCESSO!\n";
 
-    if(!estado.getEstadoCenarioFalha())
-        cout << "[Dominio: " << nome << "] FALHA: " << estado.getMensagemCenarioFalha() << "\n\n";
+    if(!estadoEntidade.getEstadoCenarioFalha())
+        cout << "[Dominio: " << nome << "] FALHA: " << estadoEntidade.getMensagemCenarioFalha() << "\n\n";
+}
+
+template <typename T>
+void executarTestesEntidade(string nomeEntidade) {
+    T entidade;
+    TUEstado estadoEntidade = entidade.run();
+    if (estadoEntidade.getEstadoCenarioSucesso()) {
+        cout << "[Entidade: " << nomeEntidade << "] SUCESSO!\n";
+    } else {
+        cout << "[Entidade: " << nomeEntidade << "] FALHA:" << estadoEntidade.getMensagemCenarioFalha() <<"\n";
+    }
 }
 
 int main() {
     cout << "*** TESTES UNITÁRIOS: DOMINIOS ***\n\n";
 
-    TUClasse *testClasse = new TUClasse();
-    invocarTeste(testClasse, "Classe");
-
-    TUCodigo *testeCodigo = new TUCodigo();
-    invocarTeste(testeCodigo, "Codigo");
-
-    TUData *testeData = new TUData();
-    invocarTeste(testeData, "Data");
-
-    TUMatricula *testeMatricula = new TUMatricula();
-    invocarTeste(testeMatricula, "Matricula");
-
-    TUResultado *testeResultado = new TUResultado();
-    invocarTeste(testeResultado, "Resultado");
-
-    TUSenha *testeSenha = new TUSenha();
-    invocarTeste(testeSenha, "Senha");
-
-    TUTelefone *testeTelefone = new TUTelefone();
-    invocarTeste(testeTelefone, "Telefone");
-
-    TUTexto *testeTexto = new TUTexto();
-    invocarTeste(testeTexto, "Texto");
+    executarTestesDominio<TUClasse>("Classe");
+    executarTestesDominio<TUCodigo>("Codigo");
+    executarTestesDominio<TUData>("Data");
+    executarTestesDominio<TUMatricula>("Matricula");
+    executarTestesDominio<TUResultado>("Resultado");
+    executarTestesDominio<TUSenha>("Senha");
+    executarTestesDominio<TUTelefone>("Telefone");
+    executarTestesDominio<TUTexto>("Texto");
 
     cout << "*** TESTES UNITÁRIOS: ENTIDADES ***\n\n";
-    TUEstado estado;
 
-    TUCasoTeste *entidadeCasoTeste = new TUCasoTeste();
-    estado = entidadeCasoTeste->run();
-    if(estado.getEstadoCenarioSucesso()){
-        cout << "[Entidade: CasoTeste] SUCESSO!\n";
-    }else{
-        cout << "[Entidade: CasoTeste] FALHA:" << estado.getMensagemCenarioFalha() <<"\n";
-    }
-
-    TUDesenvolvedor *entidadeDesenvolvedor = new TUDesenvolvedor();
-    estado = entidadeDesenvolvedor->run();
-    if(estado.getEstadoCenarioSucesso()){
-        cout << "[Entidade: Desenvolvedor] SUCESSO!\n";
-    }else{
-        cout << "[Entidade: Desenvolvedor] FALHA:" << estado.getMensagemCenarioFalha() <<"\n";
-    }
-
-    TUTeste *entidadeTeste = new TUTeste();
-    estado = entidadeTeste->run();
-    if(estado.getEstadoCenarioSucesso()){
-        cout << "[Entidade: Teste] SUCESSO!\n";
-    }else{
-        cout << "[Entidade: Teste] FALHA:" << estado.getMensagemCenarioFalha() <<"\n";
-    }
+    executarTestesEntidade<TUCasoTeste>("CasoTeste");
+    executarTestesEntidade<TUDesenvolvedor>("Desenvolvedor");
+    executarTestesEntidade<TUTeste>("Teste");
 
     return 0;
 }
