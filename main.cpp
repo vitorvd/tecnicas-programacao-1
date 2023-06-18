@@ -22,6 +22,11 @@
 #include "header/entidades/Teste.h"
 #include "source/testes/entidades/TUTeste.cpp"
 
+#include "source/controladoras/DesenvolvedorCntrl.cpp"
+#include "source/controladoras/MenuCntrl.cpp"
+
+#include "source/servicos/DesenvolvedorServico.cpp"
+
 #include <iostream>
 #include "string"
 
@@ -49,7 +54,7 @@ void executarTestesEntidade(string nomeEntidade) {
     }
 }
 
-int main() {
+void executarTestes() {
     cout << "*** TESTES UNITÁRIOS: DOMINIOS ***\n\n";
 
     executarTestesDominio<TUClasse>("Classe");
@@ -66,6 +71,22 @@ int main() {
     executarTestesEntidade<TUCasoTeste>("CasoTeste");
     executarTestesEntidade<TUDesenvolvedor>("Desenvolvedor");
     executarTestesEntidade<TUTeste>("Teste");
+}
 
+int main() {
+    MenuCntrl *menuCntrl = new MenuCntrl();
+
+    /* DESENVOLVEDOR */
+    DesenvolvedorCntrl *desenvolvedorCntrl = new DesenvolvedorCntrl();
+    IDesenvolvedorServico *desenvolvedorServico = new DesenvolvedorServico();
+    desenvolvedorCntrl->setServico(desenvolvedorServico);
+
+    menuCntrl->setDesenvolvedorCntrl(desenvolvedorCntrl);
+
+    menuCntrl->exibirAutenticarOuCadastrar();
+
+    delete menuCntrl;
+    delete desenvolvedorCntrl;
+    delete desenvolvedorServico;
     return 0;
 }
