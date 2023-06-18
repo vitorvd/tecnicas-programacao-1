@@ -4,11 +4,9 @@
 #include "BaseCntrl.h"
 
 #include "../entidades/Desenvolvedor.h"
-#include "../servicos/IDesenvolvedorServico.h"
+#include "../servicos/interfaces/IDesenvolvedorServico.h"
 
 class DesenvolvedorCntrl: public BaseCntrl {
-
-private:
 
 public:
     IDesenvolvedorServico *servico;

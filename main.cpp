@@ -23,9 +23,11 @@
 #include "source/testes/entidades/TUTeste.cpp"
 
 #include "source/controladoras/DesenvolvedorCntrl.cpp"
+#include "source/controladoras/TesteCntrl.cpp"
 #include "source/controladoras/MenuCntrl.cpp"
 
 #include "source/servicos/DesenvolvedorServico.cpp"
+#include "source/servicos/TesteServico.cpp"
 
 #include <iostream>
 #include "string"
@@ -81,8 +83,14 @@ int main() {
     IDesenvolvedorServico *desenvolvedorServico = new DesenvolvedorServico();
     desenvolvedorCntrl->setServico(desenvolvedorServico);
 
-    menuCntrl->setDesenvolvedorCntrl(desenvolvedorCntrl);
+    /* TESTE */
+    TesteCntrl *testeCntrl = new TesteCntrl();
+    ITesteServico *testeServico = new TesteServico();
+    testeCntrl->servico = testeServico;
+    testeServico->setDesenvolvedorServico(desenvolvedorServico);
 
+    menuCntrl->setDesenvolvedorCntrl(desenvolvedorCntrl);
+    menuCntrl->testeCntrl = testeCntrl;
     menuCntrl->exibirAutenticarOuCadastrar();
 
     delete menuCntrl;

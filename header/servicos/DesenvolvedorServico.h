@@ -1,7 +1,7 @@
 #ifndef TECNICAS_PROGRAMACAO_1_DESENVOLVEDORSERVICO_H
 #define TECNICAS_PROGRAMACAO_1_DESENVOLVEDORSERVICO_H
 
-#include "IDesenvolvedorServico.h"
+#include "interfaces/IDesenvolvedorServico.h"
 #include <map>
 
 class DesenvolvedorServico: public IDesenvolvedorServico {

@@ -1,7 +1,7 @@
 #ifndef TECNICAS_PROGRAMACAO_1_IDESENVOLVEDORSERVICO_H
 #define TECNICAS_PROGRAMACAO_1_IDESENVOLVEDORSERVICO_H
 
-#include "../entidades/Desenvolvedor.h"
+#include "../../entidades/Desenvolvedor.h"
 
 class IDesenvolvedorServico {
 

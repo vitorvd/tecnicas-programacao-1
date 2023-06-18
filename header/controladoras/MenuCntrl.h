@@ -7,6 +7,7 @@ class MenuCntrl: public BaseCntrl {
 
 public:
     DesenvolvedorCntrl *desenvolvedorCntrl;
+    TesteCntrl *testeCntrl;
     void exibirAutenticarOuCadastrar();
     void exibirMenuEntidades();
     void setDesenvolvedorCntrl(DesenvolvedorCntrl *);

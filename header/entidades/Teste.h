@@ -21,6 +21,7 @@ private:
     Codigo codigo;
     Texto nome;
     Classe classe;
+    Desenvolvedor desenvolvedor;
 
 public:
 
@@ -48,6 +49,10 @@ public:
     /// @return classe
     Classe getClasse() const;
 
+    Desenvolvedor getDesenvolvedor() const;
+
+    void setDesenvolvedor(const Desenvolvedor&);
+
 };
 
 inline void Teste::setCodigo(const Codigo& codigo) {
@@ -72,6 +77,14 @@ inline void Teste::setClasse(const Classe& classe) {
 
 inline Classe Teste::getClasse() const {
     return classe;
+}
+
+inline void Teste::setDesenvolvedor(const Desenvolvedor& desenvolvedor) {
+    this->desenvolvedor = desenvolvedor;
+}
+
+inline Desenvolvedor Teste::getDesenvolvedor() const {
+    return desenvolvedor;
 }
 
 #endif //TRABALHO_TP1_TESTE_H

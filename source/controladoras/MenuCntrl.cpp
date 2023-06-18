@@ -35,6 +35,10 @@ void MenuCntrl::exibirMenuEntidades() {
             "Visualizar informações (Desenvolvedor)",
             "Editar informações (Desenvolvedor)",
             "Descadastrar (Desenvolvedor)",
+            "Cadastrar (Teste)",
+            "Editar (Teste)",
+            "Listar (Testes)",
+            "Descadastrar (Testes)",
     };
 
     int tamanho = sizeof(opcoes) / sizeof(opcoes[0]);
@@ -49,7 +53,20 @@ void MenuCntrl::exibirMenuEntidades() {
             desenvolvedorCntrl->editar();
             break;
         case 3:
+            testeCntrl->servico->descadastrarVinculadosAoDesenvolvedor(desenvolvedorCntrl->servico->getDesenvolvedorLogado());
             desenvolvedorCntrl->descadastrar();
+            break;
+        case 4:
+            testeCntrl->cadastrar();
+            break;
+        case 5:
+            testeCntrl->editar();
+            break;
+        case 6:
+            testeCntrl->listar();
+            break;
+        case 7:
+            testeCntrl->descadastrar();
             break;
         default:
             exibirMenuEntidades();
