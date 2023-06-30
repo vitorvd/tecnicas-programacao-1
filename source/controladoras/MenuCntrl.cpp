@@ -43,7 +43,7 @@ void MenuCntrl::exibirMenuEntidades() {
             "Cadastrar (Caso de Teste)",
             "Editar (Caso de Teste)",
             "Listar (Caso de Teste)",
-            "Deletar (Caso de Teste)"
+            "Descadastrar (Caso de Teste)"
     };
 
     int tamanho = sizeof(opcoes) / sizeof(opcoes[0]);
