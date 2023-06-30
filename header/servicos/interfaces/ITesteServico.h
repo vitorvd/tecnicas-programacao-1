@@ -2,7 +2,6 @@
 #define TECNICAS_PROGRAMACAO_1_ITESTESERVICO_H
 
 #include "../../entidades/Teste.h"
-#include "../DesenvolvedorServico.h"
 
 class ITesteServico {
 

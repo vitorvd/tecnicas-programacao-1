@@ -5,6 +5,7 @@
 #include "../dominios/Texto.h"
 #include "../dominios/Data.h"
 #include "../dominios/Resultado.h"
+#include "../entidades/Teste.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ private:
     Texto acao;
     Texto resposta;
     Resultado resultado;
+    Teste teste;
 
 public:
 
@@ -76,6 +78,14 @@ public:
     /// @return resultado
     Resultado getResultado() const;
 
+    /// Atribui um valor para Teste.
+    /// @param  valor resultado
+    void setTeste(const Teste&);
+
+    /// Retorna o valor armazenado em Teste.
+    /// @return Teste
+    Teste getTeste() const;
+
 };
 inline void CasoTeste::setCodigo(const Codigo& codigo) {
     this->codigo = codigo;
@@ -123,6 +133,14 @@ inline void CasoTeste::setResultado(const Resultado& resultado) {
 
 inline Resultado CasoTeste::getResultado() const {
     return resultado;
+}
+
+inline void CasoTeste::setTeste(const Teste& teste) {
+    this->teste = teste;
+}
+
+inline Teste CasoTeste::getTeste() const {
+    return teste;
 }
 
 #endif //TRABALHO_TP1_CASOTESTE_H

@@ -28,6 +28,7 @@
 
 #include "source/servicos/DesenvolvedorServico.cpp"
 #include "source/servicos/TesteServico.cpp"
+#include "source/servicos/CasoTesteServico.cpp"
 
 #include <iostream>
 #include "string"
@@ -79,18 +80,26 @@ int main() {
     MenuCntrl *menuCntrl = new MenuCntrl();
 
     /* DESENVOLVEDOR */
-    DesenvolvedorCntrl *desenvolvedorCntrl = new DesenvolvedorCntrl();
+    IDesenvolvedorCntrl *desenvolvedorCntrl = new DesenvolvedorCntrl();
     IDesenvolvedorServico *desenvolvedorServico = new DesenvolvedorServico();
     desenvolvedorCntrl->setServico(desenvolvedorServico);
 
     /* TESTE */
-    TesteCntrl *testeCntrl = new TesteCntrl();
+    ITesteCntrl *testeCntrl = new TesteCntrl();
     ITesteServico *testeServico = new TesteServico();
-    testeCntrl->servico = testeServico;
+    testeCntrl->setServico(testeServico);
     testeServico->setDesenvolvedorServico(desenvolvedorServico);
 
-    menuCntrl->setDesenvolvedorCntrl(desenvolvedorCntrl);
+    /* CASO DE TESTE */
+    CasoTesteCntrl *casoTesteCntrl = new CasoTesteCntrl();
+    ICasoTesteServico *casoTesteServico = new CasoTesteServico();
+    casoTesteCntrl->setServico(casoTesteServico);
+    casoTesteCntrl->setTesteServico(testeServico);
+    casoTesteCntrl->setDesenvolvedorServico(desenvolvedorServico);
+
+    menuCntrl->desenvolvedorCntrl = desenvolvedorCntrl;
     menuCntrl->testeCntrl = testeCntrl;
+    menuCntrl->casoTesteCntrl = casoTesteCntrl;
     menuCntrl->exibirAutenticarOuCadastrar();
 
     delete menuCntrl;

@@ -1,29 +1,26 @@
-#include "../../header/servicos/TesteServico.h"
+#include "../../header/servicos/CasoTesteServico.h"
 
 #include <random>
 #include "set"
 
-void TesteServico::cadastrar(Teste *teste) {
+void CasoTesteServico::cadastrar(CasoTeste *casoTeste) {
     Codigo codigo = gerarCodigoAleatorio();
-    teste->setCodigo(codigo);
+    casoTeste->setCodigo(codigo);
 
-    Desenvolvedor desenvolvedor = desenvolvedorServico->getDesenvolvedorLogado();
-    teste->setDesenvolvedor(desenvolvedor);
-
-    repositorio[codigo.getValor()] = teste;
+    repositorio[codigo.getValor()] = casoTeste;
 }
 
-void TesteServico::descadastrar(Codigo codigo) {
+void CasoTesteServico::descadastrar(Codigo codigo) {
     this->repositorio.erase(codigo.getValor());
 }
 
-void TesteServico::descadastrarVinculadosAoDesenvolvedor(Desenvolvedor desenvolvedor) {
+void CasoTesteServico::descadastrarVinculadosAoTeste(Teste teste) {
     set<string> codigosParaRemover;
 
     for (const auto& par : repositorio) {
-        const Teste *teste = par.second;
+        const CasoTeste *casoTeste = par.second;
 
-        if (teste->getDesenvolvedor().getMatricula().getValor() == desenvolvedor.getMatricula().getValor())
+        if (casoTeste->getTeste().getCodigo().getValor() == teste.getCodigo().getValor())
             codigosParaRemover.insert(par.first);
     }
 
@@ -31,15 +28,15 @@ void TesteServico::descadastrarVinculadosAoDesenvolvedor(Desenvolvedor desenvolv
         repositorio.erase(codigo);
 }
 
-Teste* TesteServico::validarSeCodigoTemTeste(Codigo codigo) {
+CasoTeste* CasoTesteServico::validarSeCodigoTemCasoTeste(Codigo codigo) {
     auto iterator = repositorio.find(codigo.getValor());
     if(iterator == repositorio.end())
-        throw invalid_argument("O código " + codigo.getValor() + " não está associado a nenhum Teste.");
+        throw invalid_argument("O código " + codigo.getValor() + " não está associado a nenhum Caso de Teste.");
 
     return iterator->second;
 }
 
-Codigo TesteServico::gerarCodigoAleatorio() {
+Codigo CasoTesteServico::gerarCodigoAleatorio() {
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<char> charDist('A', 'Z');
@@ -58,8 +55,4 @@ Codigo TesteServico::gerarCodigoAleatorio() {
     codigo.setValor(codigoStr);
 
     return codigo;
-}
-
-map<string, Teste*> TesteServico::getRepositorio() {
-    return repositorio;
 }

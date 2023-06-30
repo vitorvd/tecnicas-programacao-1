@@ -5,8 +5,9 @@
 
 #include "../entidades/Desenvolvedor.h"
 #include "../servicos/interfaces/IDesenvolvedorServico.h"
+#include "interfaces/IDesenvolvedorCntrl.h"
 
-class DesenvolvedorCntrl: public BaseCntrl {
+class DesenvolvedorCntrl: public IDesenvolvedorCntrl, public BaseCntrl {
 
 public:
     IDesenvolvedorServico *servico;
@@ -15,9 +16,14 @@ public:
     void editar();
     void visualizar();
     void descadastrar();
-    void setServico(IDesenvolvedorServico *);
+    IDesenvolvedorServico* getServico();
+    void setServico(IDesenvolvedorServico *servico);
 
 };
+
+inline IDesenvolvedorServico* DesenvolvedorCntrl::getServico() {
+    return servico;
+}
 
 inline void DesenvolvedorCntrl::setServico(IDesenvolvedorServico *servico) {
     this->servico = servico;

@@ -4,6 +4,7 @@
 #include "../dominios/Codigo.h"
 #include "../dominios/Texto.h"
 #include "../dominios/Classe.h"
+#include "../entidades/Desenvolvedor.h"
 
 using namespace std;
 

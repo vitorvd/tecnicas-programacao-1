@@ -2,20 +2,18 @@
 #define TECNICAS_PROGRAMACAO_1_MENUCNTRL_H
 
 #include "BaseCntrl.h"
+#include "CasoTesteCntrl.h"
+#include "interfaces/ITesteCntrl.h"
 
 class MenuCntrl: public BaseCntrl {
 
 public:
-    DesenvolvedorCntrl *desenvolvedorCntrl;
-    TesteCntrl *testeCntrl;
+    IDesenvolvedorCntrl *desenvolvedorCntrl;
+    ITesteCntrl *testeCntrl;
+    CasoTesteCntrl *casoTesteCntrl;
     void exibirAutenticarOuCadastrar();
     void exibirMenuEntidades();
-    void setDesenvolvedorCntrl(DesenvolvedorCntrl *);
 
 };
-
-inline void MenuCntrl::setDesenvolvedorCntrl(DesenvolvedorCntrl *desenvolvedorCntrl) {
-    this->desenvolvedorCntrl = desenvolvedorCntrl;
-}
 
 #endif //TECNICAS_PROGRAMACAO_1_MENUCNTRL_H

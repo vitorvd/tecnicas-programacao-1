@@ -1,4 +1,5 @@
 #include "../../header/controladoras/MenuCntrl.h"
+#include "../../source/controladoras/CasoTesteCntrl.cpp"
 
 void MenuCntrl::exibirAutenticarOuCadastrar() {
     system("clear");
@@ -29,7 +30,7 @@ void MenuCntrl::exibirAutenticarOuCadastrar() {
 }
 
 void MenuCntrl::exibirMenuEntidades() {
-    Desenvolvedor desenvolvedor = desenvolvedorCntrl->servico->getDesenvolvedorLogado();
+    Desenvolvedor desenvolvedor = desenvolvedorCntrl->getServico()->getDesenvolvedorLogado();
     system("clear");
     string opcoes[] = {
             "Visualizar informações (Desenvolvedor)",
@@ -39,6 +40,10 @@ void MenuCntrl::exibirMenuEntidades() {
             "Editar (Teste)",
             "Listar (Testes)",
             "Descadastrar (Testes)",
+            "Cadastrar (Caso de Teste)",
+            "Editar (Caso de Teste)",
+            "Listar (Caso de Teste)",
+            "Deletar (Caso de Teste)"
     };
 
     int tamanho = sizeof(opcoes) / sizeof(opcoes[0]);
@@ -53,7 +58,7 @@ void MenuCntrl::exibirMenuEntidades() {
             desenvolvedorCntrl->editar();
             break;
         case 3:
-            testeCntrl->servico->descadastrarVinculadosAoDesenvolvedor(desenvolvedorCntrl->servico->getDesenvolvedorLogado());
+            testeCntrl->getServico()->descadastrarVinculadosAoDesenvolvedor(desenvolvedorCntrl->getServico()->getDesenvolvedorLogado());
             desenvolvedorCntrl->descadastrar();
             break;
         case 4:
@@ -67,6 +72,18 @@ void MenuCntrl::exibirMenuEntidades() {
             break;
         case 7:
             testeCntrl->descadastrar();
+            break;
+        case 8:
+            casoTesteCntrl->cadastrar();
+            break;
+        case 9:
+            casoTesteCntrl->editar();
+            break;
+        case 10:
+            casoTesteCntrl->listar();
+            break;
+        case 11:
+            casoTesteCntrl->descadastrar();
             break;
         default:
             exibirMenuEntidades();
