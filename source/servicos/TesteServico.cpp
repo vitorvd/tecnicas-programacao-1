@@ -14,6 +14,9 @@ void TesteServico::cadastrar(Teste *teste) {
 }
 
 void TesteServico::descadastrar(Codigo codigo) {
+    Teste teste = *this->getRepositorio()[codigo.getValor()];
+    this->getCasoTesteServico()->descadastrarVinculadosAoTeste(teste);
+
     this->repositorio.erase(codigo.getValor());
 }
 
@@ -23,8 +26,10 @@ void TesteServico::descadastrarVinculadosAoDesenvolvedor(Desenvolvedor desenvolv
     for (const auto& par : repositorio) {
         const Teste *teste = par.second;
 
-        if (teste->getDesenvolvedor().getMatricula().getValor() == desenvolvedor.getMatricula().getValor())
+        if (teste->getDesenvolvedor().getMatricula().getValor() == desenvolvedor.getMatricula().getValor()) {
+            this->getCasoTesteServico()->descadastrarVinculadosAoTeste(*teste); //descadastrando casos de testes
             codigosParaRemover.insert(par.first);
+        }
     }
 
     for (const string codigo : codigosParaRemover)
