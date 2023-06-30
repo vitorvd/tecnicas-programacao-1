@@ -2,6 +2,7 @@
 #define TECNICAS_PROGRAMACAO_1_ITESTESERVICO_H
 
 #include "../../entidades/Teste.h"
+#include "ICasoTesteServico.h"
 
 class ITesteServico {
 
@@ -14,6 +15,8 @@ public:
     virtual void descadastrarVinculadosAoDesenvolvedor(Desenvolvedor) = 0;
     virtual Teste* validarSeCodigoTemTeste(Codigo) = 0;
     virtual map<string, Teste*> getRepositorio() = 0;
+    virtual void setCasoTesteServico(ICasoTesteServico *) = 0;
+    virtual ICasoTesteServico* getCasoTesteServico() = 0;
     virtual void setDesenvolvedorServico(IDesenvolvedorServico *) = 0;
     virtual IDesenvolvedorServico* getDesenvolvedorServico() = 0;
 

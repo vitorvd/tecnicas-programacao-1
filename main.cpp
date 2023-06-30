@@ -84,15 +84,18 @@ int main() {
     IDesenvolvedorServico *desenvolvedorServico = new DesenvolvedorServico();
     desenvolvedorCntrl->setServico(desenvolvedorServico);
 
+    /* CASO DE TESTE */
+    CasoTesteCntrl *casoTesteCntrl = new CasoTesteCntrl();
+    ICasoTesteServico *casoTesteServico = new CasoTesteServico();
+
     /* TESTE */
     ITesteCntrl *testeCntrl = new TesteCntrl();
     ITesteServico *testeServico = new TesteServico();
     testeCntrl->setServico(testeServico);
     testeServico->setDesenvolvedorServico(desenvolvedorServico);
+    testeServico->setCasoTesteServico(casoTesteServico);
 
     /* CASO DE TESTE */
-    CasoTesteCntrl *casoTesteCntrl = new CasoTesteCntrl();
-    ICasoTesteServico *casoTesteServico = new CasoTesteServico();
     casoTesteCntrl->setServico(casoTesteServico);
     casoTesteCntrl->setTesteServico(testeServico);
     casoTesteCntrl->setDesenvolvedorServico(desenvolvedorServico);
